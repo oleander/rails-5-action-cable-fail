@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0.0.beta1', '< 5.1'
+gem 'rails', github: "rails/rails" #'>= 5.0.0.beta1', '< 5.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Uglifier as compressor for JavaScript assets
@@ -43,3 +43,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'sucker_punch', '~> 1.0'
+gem "sidekiq"

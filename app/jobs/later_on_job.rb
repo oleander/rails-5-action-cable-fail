@@ -12,7 +12,6 @@ class LaterOnJob < ApplicationJob
       locals: locals
     })
 
-    sleep 5
-    ActionCable.server.broadcast("messages", data: data)
+    ActionCable.server.broadcast("messages:#{key}", data: data)
   end
 end

@@ -18,9 +18,7 @@ module ApplicationHelper
       Marshal.dump(locals),
       key
     )
-
-    raise res.job_id
-
+    
     return tag
   end
 end

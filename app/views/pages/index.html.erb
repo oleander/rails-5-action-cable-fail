@@ -1,20 +1,29 @@
 <h1>Pages#index</h1>
 <p>Find me in app/views/pages/index.html.erb</p>
 
+<script type="text/javascript">
+    var cabel = ActionCable.createConsumer("ws://localhost:28080")
+    cabel.subscriptions.create({ "channel": "LaterOnChannel", "key": "key" }, {
+      connected: function() {
+        console.info($(".later-on").data("key"));
+        var self = this;
+        console.info("nowwww.")
+        // this.perform("tryme");
+      },
+      received: function(data) {
+        alert(data);
+        // this.perform("unfollow");
+        console.info("OKSOKAS", data)
+        $(".later-on").replaceWith(data.data);
+      },
+      initialized: function(data) {
+        console.info("OKOKOK", data);
+      }
+    });
+    console.info("ON!")
+</script>
+
 <%= later_on "pages/movies", "key", { movies: @movies } do %>
   Loading movies
 <% end %>
 
-<script type="text/javascript">
-  $(function() {
-    var cabel = ActionCable.createConsumer("ws://localhost:28080")
-    cabel.subscriptions.create("LaterOnChannel", {
-      connected: function() {
-        console.info("connected")
-      },
-      received: function(data) {
-        $(".later-on").replaceWith(data.data);
-      }
-    });
-  })
-</script>
