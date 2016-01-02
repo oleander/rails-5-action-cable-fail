@@ -1,0 +1,20 @@
+<h1>Pages#index</h1>
+<p>Find me in app/views/pages/index.html.erb</p>
+
+<%= later_on "pages/movies", "key", { movies: @movies } do %>
+  Loading movies
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+    var cabel = ActionCable.createConsumer("ws://localhost:28080")
+    cabel.subscriptions.create("LaterOnChannel", {
+      connected: function() {
+        console.info("connected")
+      },
+      received: function(data) {
+        $(".later-on").replaceWith(data.data);
+      }
+    });
+  })
+</script>
