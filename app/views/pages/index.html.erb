@@ -1,29 +1,17 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<% LaterOnJob.perform_later("This is a background job") %>
 
 <script type="text/javascript">
-    var cabel = ActionCable.createConsumer("ws://localhost:28080")
-    cabel.subscriptions.create({ "channel": "LaterOnChannel", "key": "key" }, {
-      connected: function() {
-        console.info($(".later-on").data("key"));
-        var self = this;
-        console.info("nowwww.")
-        // this.perform("tryme");
-      },
-      received: function(data) {
-        alert(data);
-        // this.perform("unfollow");
-        console.info("OKSOKAS", data)
-        $(".later-on").replaceWith(data.data);
-      },
-      initialized: function(data) {
-        console.info("OKOKOK", data);
-      }
-    });
-    console.info("ON!")
+  var cabel = ActionCable.createConsumer("ws://localhost:3000/cable")
+  cabel.subscriptions.create("LaterOnChannel", {
+    connected: function() {
+      console.info("connected");
+    },
+    received: function(data) {
+      console.info("received", data);
+      $(".data").replaceWith(data.data);
+    }
+  });
 </script>
 
-<%= later_on "pages/movies", "key", { movies: @movies } do %>
-  Loading movies
-<% end %>
-
+<h1>Waiting for data</h1>
+<div class="data"></div>

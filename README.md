@@ -1,24 +1,17 @@
-## README
+# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Start
 
-Things you may want to cover:
+1. Ensure Ruby 2.2.4+ is installed.
+2. Install deps. `bundle install`
+3. Start redis. `redis-server`
+4. Start rails. `rails s`
 
-* Ruby version
+## How to reproduce
 
-* System dependencies
+1. Visit [localhost:3000/pages/index](http://localhost:3000/pages/index)
+2. Wait 5 second for the page to load.
+3. Reload the page.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**Expected**: The text `This is a background job` should be displayed in step 2.  
+**Happens**: The text is shown when the page is reloaded in step 3.

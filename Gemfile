@@ -43,4 +43,3 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'sucker_punch', '~> 1.0'
-gem "sidekiq"
